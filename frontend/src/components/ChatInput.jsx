@@ -2,8 +2,7 @@ import { useRef, useState } from "react";
 
 import {
     uploadPdf,
-    askQuestion,
-    getPdfs
+    askQuestion
 }
 from "../services/api";
 
@@ -42,10 +41,12 @@ function ChatInput({
             const response =
                 await uploadPdf(file);
 
-            const updatedPdfs =
-                await getPdfs();
-
-            setPdfs(updatedPdfs);
+            setPdfs((prev) => [
+                response.filename,
+                ...prev.filter(
+                    pdf => pdf !== response.filename
+                )
+            ]);
 
             alert(
                 `${response.filename} uploaded successfully`
@@ -218,7 +219,7 @@ function ChatInput({
                 >
                     {
                         loading
-                            ? "⌛︎"
+                            ? "⌛"
                             : "↑"
                     }
                 </button>

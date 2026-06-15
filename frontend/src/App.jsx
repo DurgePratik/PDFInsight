@@ -50,7 +50,9 @@ function App() {
             const data =
                 await getPdfs();
 
-            setPdfs(data);
+            setPdfs(
+                [...data].reverse()
+            );
 
         }
         catch (error) {
