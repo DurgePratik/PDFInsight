@@ -57,6 +57,9 @@ async def upload_pdf(
     file: UploadFile = File(...)
 ):
 
+    # Create uploads folder if it doesn't exist
+    os.makedirs("uploads", exist_ok=True)
+
     file_path = f"uploads/{file.filename}"
 
     with open(file_path, "wb") as buffer:
