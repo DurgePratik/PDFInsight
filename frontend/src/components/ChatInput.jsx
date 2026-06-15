@@ -219,7 +219,7 @@ function ChatInput({
                 >
                     {
                         loading
-                            ? "⌛"
+                            ? "■"
                             : "↑"
                     }
                 </button>
